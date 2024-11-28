@@ -1,23 +1,32 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 import { useEffect, useState } from 'react';
-import { Image } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import {
+  Dropdown, DropdownButton, Image, InputGroup,
+} from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import getPokemon from '../slices/pokeApiThunk';
+import { HG, XHG, WEIGHTS } from '../data/Constants';
 
 interface PokeDetailsProps {
   pokeID:string; // Array de objetos tipo Pokemon
 }
 
 function PokeDetails({ pokeID }:PokeDetailsProps):React.JSX.Element {
-  const { id } = useParams();
   const dispatch = useDispatch();
 
   const { isEmpty, isLoading, pokemon } = useSelector((state) => state.api);
+  const [weightType, setWeightType] = useState(HG);
+  const [weightMod, setWeightMod] = useState(XHG);
 
   useEffect(() => {
     dispatch(getPokemon(pokeID));
   }, [pokeID]);
+
+  const onDropDown = (newWeighType) => {
+    setWeightType(newWeighType);
+    const { mod } = WEIGHTS.find(({ type }) => type === newWeighType);
+    setWeightMod(mod);
+  };
 
   return (
     <>
@@ -38,10 +47,19 @@ function PokeDetails({ pokeID }:PokeDetailsProps):React.JSX.Element {
           Pokedex Id:
           {` ${pokemon.id}`}
         </p>
-        <p className="fs-3">
-          Peso:
-          {` ${pokemon.weight}`}
-        </p>
+        <InputGroup className="py-4">
+          <p className="fs-3 me-1">
+            Peso:
+            {Number(` ${pokemon.weight}` * weightMod).toFixed(2) }
+          </p>
+          <DropdownButton id="dropdown-basic-button" className="ms-1 pb-8" size="sm-1" onSelect={onDropDown} title={weightType}>
+            {WEIGHTS.map((weight) => (
+              <Dropdown.Item key={weight.type} eventKey={weight.type}>
+                {weight.type}
+              </Dropdown.Item>
+            ))}
+          </DropdownButton>
+        </InputGroup>
         <p className="fs-3">
           Foto Frontal
         </p>
