@@ -20,7 +20,7 @@ export const pokeApiSlice = createSlice({
     [getPokemon.pending]: (state) => {
       state.isLoading = true;
     },
-
+    // If we get a pokemon, fill neccessary data
     [getPokemon.fulfilled]: (state, { payload }) => {
       state.pokemon.name = payload.name;
       state.pokemon.id = payload.id;
@@ -30,11 +30,10 @@ export const pokeApiSlice = createSlice({
       state.isEmpty = false;
     },
 
+    // If pokemon doesn't exist or we get an error
     [getPokemon.rejected]: (state, action) => {
       state.isLoading = false;
       state.isEmpty = true;
-      // eslint-disable-next-line no-alert
-      // alert(action.payload);
     },
   },
 });

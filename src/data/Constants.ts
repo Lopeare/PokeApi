@@ -6,7 +6,7 @@ const XKG:number = 0.1;
 const KG:string = 'Kg';
 const HG:string = 'Hg';
 const LBS:string = 'Lbs';
-
+// Different weights to be shown and their modifiers from Hg
 const WEIGHTS:object[] = [
   {
     type: HG,

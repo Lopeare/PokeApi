@@ -1,5 +1,5 @@
 import { Pokemon } from 'data/PokeData';
-import { NavLink } from 'react-bootstrap';
+import { NavLink, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 interface PokeTableProps {
@@ -8,11 +8,23 @@ interface PokeTableProps {
 
 function PokeTable({ pokemonList }: PokeTableProps):React.JSX.Element {
   return (
-    <ul>
-      {
-        pokemonList.map((pokemon) => <NavLink key={pokemon.id} as={Link} to={`/details/${pokemon.id}`}>{pokemon.name}</NavLink>)
-      }
-    </ul>
+    <Table striped bordered hover>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        {pokemonList.map((pokemon) => (
+          <tr key={pokemon.id}>
+            <td>{pokemon.id}</td>
+            <td><NavLink key={pokemon.id} as={Link} to={`/details/${pokemon.id}`}>{pokemon.name}</NavLink></td>
+
+          </tr>
+        ))}
+      </tbody>
+    </Table>
   );
 }
 

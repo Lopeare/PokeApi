@@ -6,12 +6,14 @@ import { useState } from 'react';
 
 function PokeSearch():React.JSX.Element {
   const navigate = useNavigate();
+  // inputValue is the value for doing the search (pokeName || pokeID)
   const [inputValue, setInputValue] = useState('');
 
   const onChange = ({ target }) => {
     setInputValue(target.value);
   };
 
+  // For each pokemon selected, navigate to component <PokeDetails id=inputValue>
   const onSubmit = (event:Event):void => {
     event.preventDefault();
     navigate(`/details/${inputValue}`);
@@ -23,7 +25,7 @@ function PokeSearch():React.JSX.Element {
         <Form.Control
           type="text"
           id="inputSearch"
-          placeholder="Enter a pokemon name"
+          placeholder="Enter a pokemon name or ID"
           aria-describedby="searchHelpBlock"
           onChange={onChange}
           value={inputValue}

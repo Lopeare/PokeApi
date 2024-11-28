@@ -15,13 +15,17 @@ function PokeDetails({ pokeID }:PokeDetailsProps):React.JSX.Element {
   const dispatch = useDispatch();
 
   const { isEmpty, isLoading, pokemon } = useSelector((state) => state.api);
+  // Current weight string --> Hg
   const [weightType, setWeightType] = useState(HG);
+  // Current weight modifier --> 1
   const [weightMod, setWeightMod] = useState(XHG);
 
+  // Doing the search
   useEffect(() => {
     dispatch(getPokemon(pokeID));
   }, [pokeID]);
 
+  // Each time the dropdown is selected, The new weight modifier is calculated
   const onDropDown = (newWeighType) => {
     setWeightType(newWeighType);
     const { mod } = WEIGHTS.find(({ type }) => type === newWeighType);
