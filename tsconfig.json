@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",                      // Mantén JSX moderno.
+    "strict": true,                          // Activa el modo estricto.
+    "esModuleInterop": true,                 // Permite interoperabilidad con módulos CommonJS.
+    "module": "esnext",                      // Para usar módulos modernos.
+    "target": "es6",                         // Define ES6 como objetivo mínimo.
+    "baseUrl": "./src",                      // Usa la carpeta "src" como base.
+    "paths": {
+      "*": ["*"]                             // Mantén las rutas relativas.
+    },
+    "moduleResolution": "node",             // Resolución estándar de módulos.
+    
+    // Añadidos recomendados:
+    "noImplicitAny": true,                   // Detecta variables sin tipo explícito.
+    "noImplicitReturns": true,               // Obliga a que todas las funciones devuelvan un valor.
+    "strictNullChecks": true,                // Detecta problemas con null/undefined.
+    "noImplicitThis": true,                  // Evita uso ambiguo de 'this'.
+    "forceConsistentCasingInFileNames": true, // Asegura consistencia en nombres de archivo.
+    "resolveJsonModule": true,               // Permite importar archivos JSON.
+    "skipLibCheck": true                     // Omite comprobación de tipos en dependencias externas.
+  },
+  "include": ["src/**/*"],                   // Archivos incluidos.
+  "exclude": ["node_modules", "dist"]        // Archivos/carpetas excluidos.
+}
