@@ -14,5 +14,5 @@ Code revised with eslint
 - npm run dev
 
 #### If you want to check the app: 
-[Clic me!]
+[Clic me!](https://lopearepokeapi.netlify.app/)
 
