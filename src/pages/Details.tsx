@@ -3,12 +3,12 @@ import { PokeDetails, PokeSearch } from '../components';
 
 function Details():React.JSX.Element {
   const { id } = useParams();
-  const a:string = id ?? '';
+  const pokeId:string = id ?? '';
   return (
     <>
       <PokeSearch />
       <p className="fs-1">Details Page for pokemon selected</p>
-      <PokeDetails pokeID={a} />
+      <PokeDetails pokeID={pokeId} />
     </>
   );
 }
